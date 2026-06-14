@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="search-page">
+
+    <h1>
+
+        Search Users
+
+    </h1>
+
+    <input type="text"
+           id="searchInput"
+           placeholder="Search User...">
+
+    <div id="users">
+
+        {% for user in users %}
+
+        <div class="user-card">
+
+            <h3>
+
+                {{user.username}}
+
+            </h3>
+
+            <a href="/profile/{{user.id}}/">
+
+                View Profile
+
+            </a>
+
+        </div>
+
+        {% empty %}
+
+        <h2>
+
+            No Users Found
+
+        </h2>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<script>
+
+let input =
+document.getElementById(
+"searchInput"
+);
+
+input.addEventListener(
+"keyup",
+()=>{
+
+let value =
+input.value.toLowerCase();
+
+let users =
+document.querySelectorAll(
+".user-card"
+);
+
+users.forEach(user=>{
+
+if(
+user.innerText
+.toLowerCase()
+.includes(value)
+){
+
+user.style.display =
+"block";
+
+}else{
+
+user.style.display =
+"none";
+
+}
+
+});
+
+});
+
+</script>
+
+{% endblock %}

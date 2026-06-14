@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="main-layout">
+
+    <!-- Left Sidebar -->
+
+    <div class="left-sidebar">
+
+        <div class="card">
+
+            <h2>
+                {{request.user.username}}
+            </h2>
+
+            <a href="/profile/{{request.user.id}}/">
+
+                View Profile
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Feed -->
+    <div class="feed">
+
+        <!-- Create Post -->
+
+        <div class="card">
+
+            <h2>
+                Create Post
+            </h2>
+
+            <form action="/create-post/"
+                  method="POST"
+                  enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <textarea
+                    id="postContent"
+                    name="content"
+                    maxlength="300"
+                    placeholder="What's on your mind?"
+                    required>
+                </textarea>
+
+                <p>
+
+                    Characters Left :
+
+                    <span id="count">
+
+                        300
+
+                    </span>
+
+                </p>
+
+                <input type="file"
+                       id="imageInput"
+                       name="image">
+
+                <br><br>
+
+                <img id="preview"
+                     class="preview-image">
+
+                <button type="submit">
+
+                    Post
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- All Posts -->
+
+        {% for post in posts %}
+
+        <div class="card post-card">
+
+            <div class="post-header">
+
+                <a href="/profile/{{post.user.id}}/">
+
+                    <h3>
+
+                        {{post.user.username}}
+
+                    </h3>
+
+                </a>
+
+                <small>
+
+                    {{post.created_at}}
+
+                </small>
+
+            </div>
+
+            <p>
+
+                {{post.content}}
+
+            </p>
+
+            {% if post.image %}
+
+            <img src="{{post.image.url}}"
+                 class="post-image">
+
+            {% endif %}
+
+            <div class="post-actions">
+
+                <a href="/like/{{post.id}}/"
+                   class="like-btn">
+
+                    ❤️ Like
+
+                    ({{post.like_set.count}})
+
+                </a>
+
+                {% if request.user == post.user %}
+
+                <a href="/delete/{{post.id}}/"
+                   onclick="return confirmDelete();"
+                   class="delete-btn">
+
+                    Delete
+
+                </a>
+
+                {% endif %}
+
+            </div>
+
+            <!-- Comment Form -->
+
+            <form action="/comment/{{post.id}}/"
+                  method="POST">
+
+                {% csrf_token %}
+
+                <input type="text"
+                       name="comment"
+                       placeholder="Write comment..."
+                       required>
+
+                <button type="submit">
+
+                    Comment
+
+                </button>
+
+            </form>
+
+            <!-- Comments -->
+
+            <div class="comments">
+
+                {% for comment in post.comment_set.all %}
+
+                <p>
+
+                    <b>
+
+                        {{comment.user.username}}
+
+                    </b>
+
+                    :
+
+                    {{comment.text}}
+
+                </p>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="card">
+
+            <h2>
+
+                No Posts Yet
+
+            </h2>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

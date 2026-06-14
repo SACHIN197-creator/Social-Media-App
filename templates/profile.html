@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="profile-container">
+
+    <div class="profile-card">
+
+        <img src="{{profile_obj.image.url}}"
+             class="profile-image">
+
+        <h1>
+
+            {{profile_user.username}}
+
+        </h1>
+
+        <p>
+
+            {{profile_obj.bio}}
+
+        </p>
+
+        <div class="stats">
+
+            <div>
+
+                <h3>
+
+                    {{followers}}
+
+                </h3>
+
+                <p>
+                    Followers
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3>
+
+                    {{following}}
+
+                </h3>
+
+                <p>
+                    Following
+                </p>
+
+            </div>
+
+        </div>
+
+        {% if profile_user != request.user %}
+
+        <a href="/follow/{{profile_user.id}}/"
+           class="follow-btn">
+
+            {% if is_following %}
+
+                Unfollow
+
+            {% else %}
+
+                Follow
+
+            {% endif %}
+
+        </a>
+
+        {% endif %}
+
+        {% if profile_user == request.user %}
+
+        <a href="/edit-profile/"
+           class="edit-btn">
+
+            Edit Profile
+
+        </a>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
