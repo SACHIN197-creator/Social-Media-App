@@ -23,7 +23,7 @@ A modern mini Social Media Platform built using Django, HTML, CSS, JavaScript, a
 ![Home Page](images/A1.jpg)
 
 ---
-![Post](screenshots/A2.jpg)
+![Post](images/A2.jpg)
 
 ---
 
