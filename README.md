@@ -20,30 +20,30 @@ A modern mini Social Media Platform built using Django, HTML, CSS, JavaScript, a
 
 # 📸 Screenshots
 
-![Home Page](images/A1.jpg)
+![Home Page](images/A3.jpg)
 
 ---
-![Post](images/A2.jpg)
+![Post](images/A4.jpg)
 
 ---
 
 ## 👤 User Profile
 
-![Profile Page](screenshots/profile.png)
+![Profile Page](images/.A1jpg)
 
 ---
 
 ## 🔍 User Search
 
-![Search Page](screenshots/search.png)
+![Search Page](images/A2.jpg)
 
 ---
 
 ## 🛠️ Technologies Used
 
 ### Frontend
-- HTML5
-- CSS3
+- HTML
+- CSS
 - JavaScript
 
 ### Backend
