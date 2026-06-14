@@ -27,13 +27,11 @@ A modern mini Social Media Platform built using Django, HTML, CSS, JavaScript, a
 
 ---
 
-## 👤 User Profile
 
-![Profile Page](images/.A1jpg)
+![Profile Page](images/A1.jpg)
 
 ---
 
-## 🔍 User Search
 
 ![Search Page](images/A2.jpg)
 
